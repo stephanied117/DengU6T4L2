@@ -84,18 +84,20 @@ public class HorseBarn {
      *  POSTCONDITION: The order of the horses is the same as before the consolidation.
      */
     public void consolidate() {
-        int count = 0;
-        int og = 0;
-        int i = 0;
-        while (i < stalls.length && stalls[i] == null) {
-            if (stalls[i] == null) {
-                count++;
+        Horse[] temp = new Horse[stalls.length];
+        int tracker = 0;
+        for (Horse h : stalls) {
+            if (h != null) {
+                temp[tracker] = h;
+                tracker++;
             }
-            i++;
         }
-        stalls[og] = stalls[og + count];
-        stalls[og + count] = null;
-        og = og + count;
+        for (int i = 0; i < tracker; i++) {
+            stalls[i] = temp[i];
+        }
+        for (int j = tracker; j < stalls.length; j++) {
+            stalls[j] = temp[j];
+        }
     }
 }
 
